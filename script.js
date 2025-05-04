@@ -1,24 +1,16 @@
-function addTask() {
-    const taskInput = document.getElementById("taskInput");
-    const taskText = taskInput.value.trim();
-  
-    if (taskText !== "") {
-      const li = document.createElement("li");
-      li.innerHTML = `
-        <span onclick="toggleComplete(this)">${taskText}</span>
-        <button class="remove" onclick="removeTask(this)">Delete</button>
-      `;
-      document.getElementById("taskList").appendChild(li);
-      taskInput.value = "";
-    }
-  }
-  
-  function toggleComplete(element) {
-    element.parentElement.classList.toggle("completed");
-  }
-  
-  function removeTask(button) {
-    const li = button.parentElement;
-    li.remove();
-  }
-  
+var cont = 0;
+function addTodoList() {
+    $('#container-todo-list').append(`<div class="todolist_container" id="todolist_container_${cont}">
+        <input type="text" class="todolist_input" id="todolist_input_${cont}" />
+        <button class="todolist_button todolist_button_remove" type="button" onclick="removeTodoList(${cont});">Excluir</button>
+        <button class="todolist_button todolist_button_print" type="button" onclick="printValue(${cont});">Print</button>
+    </div>`);
+    cont++;
+}
+function removeTodoList(tempNumber) {
+    $('#todolist_container_' + tempNumber).remove();
+}
+function printValue(tempNumber) {
+    let valueInput = $('#todolist_input_' + tempNumber).val();
+    alert(valueInput);
+}
